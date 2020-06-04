@@ -1,0 +1,147 @@
+stitching:
+    detector_threads: 10
+    detector_type: SIFT
+    detector_params:
+        sigma: 1.6
+        nOctaveLayers: 5
+    #detector_type: ORB
+    #detector_params:
+    #    nfeatures: 2000
+    #detector_type: SURF
+    #detector_type: BRISK
+    #detector_type: AKAZE
+
+    #descriptor:
+    #    type: SIFT
+
+    matcher_threads: 5
+    matcher_params:
+        ROD_cutoff: 0.92
+        model_index: 1 # 0 - Translation, 1 - Rigid, 3 - Affine
+        #num_filtered_percent: 0.1
+        #filter_rate_cutoff: 0.1
+        min_features_num: 10
+        iterations: 1000
+        max_epsilon: 9 #5
+        min_inlier_ratio: 0.01
+        min_num_inlier: 0.01
+        max_trust: 3
+        #det_delta: 0.95
+        #max_stretch: 0.95
+        #use_regularizer: True
+        #regularizer_model_index: 1
+        #regularizer_lambda: 0.1
+        #best_k_matches: 30
+
+    missing_matches_policy_type: mb_aligner.stitching.missing_matches_policies.estimate_using_similar_tiles_matches.EstimateUsingSimilarTilesMatches
+
+    optimizer_type: mb_aligner.stitching.optimizers.optimize_rigid_2d_tiles.Rigid2DOptimizer
+    #optimizer_type: mb_aligner.stitching.optimizers.gpu.optimize_rigid_2d_tiles_gpu.GPURigid2DOptimizer
+    optimizer_params:
+        damping: 0.01
+        huber_delta: 15
+        max_iterations: 1000
+        init_gamma: 0.00000000001
+        min_gamma: 1e-30
+        eps: 1e-9
+        pre_translate: True
+
+
+alignment:
+    processes_num: 32
+    work_dir: '/mnt/disks/date_disk/Susan/3d_work_dir_R1W4'
+    output_dir: '/mnt/disks/date_disk/Susan/3d_output_dir_R1W4'
+    process_lru_size: 1500
+    continue_on_error: True
+    compare_distance: 2
+
+    pre_match_type: mb_aligner.alignment.pre_matchers.full_section_then_mfovs_thumbs_blobs.PreMatch3DFullSectionThenMfovsThumbsBlobs
+    pre_match_params:
+        blob_detector:
+            minArea : 300
+            maxArea : 1000
+
+        matcher_params:
+            ROD_cutoff: 0.95
+            model_index: 3 # 0 - Translation, 1 - Rigid, 3 - Affine
+            #num_filtered_percent: 0.1
+            #filter_rate_cutoff: 0.1
+            min_features_num: 10
+            iterations: 10000
+            max_epsilon: 70
+            #min_inlier_ratio: 0.01
+            #min_num_inlier: 0.01
+            min_inlier_ratio: 0.0
+            min_num_inlier: 0.0
+            max_trust: 3
+            det_delta: 0.95
+            #use_regularizer: True
+            #regularizer_model_index: 1
+            #regularizer_lambda: 0.1
+
+    fine_match_type: mb_aligner.alignment.fine_matchers.block_matcher_pmcc.BlockMatcherPMCCDispatcher
+    fine_match_params:
+        mesh_spacing : 500
+        scaling : 0.4
+        template_size : 400
+        search_window_size : 800
+        min_correlation : 0.2
+        maximal_curvature_ratio : 10
+        maximal_ROD : 0.9
+        use_clahe : False
+
+#     fine_match_type: mb_aligner.alignment.fine_matchers.features_block_matcher.FeaturesBlockMatcherDispatcher
+#     fine_match_params:
+#         mesh_spacing : 500
+#         template_size : 400
+#         search_window_size : 800
+# 
+#         detector_type: ORB
+#         detector_params:
+#             nfeatures: 10000
+# 
+# #         detector_type: AKAZE
+# #         detector_params:
+# #             threshold: 0.005
+#  
+#         matcher_params:
+#             ROD_cutoff: 0.92
+#             model_index: 0 # 0 - Translation, 1 - Rigid, 3 - Affine
+#             #num_filtered_percent: 0.1
+#             #filter_rate_cutoff: 0.1
+#             min_features_num: 10
+#             iterations: 1000
+#             max_epsilon: 15
+#             min_inlier_ratio: 0.0
+#             min_num_inlier: 0.0
+#             avoid_robust_filter: True
+#             #max_trust: 3
+#             #det_delta: 0.95
+#             #max_stretch: 0.95
+#             #use_regularizer: True
+#             #regularizer_model_index: 1
+#             #regularizer_lambda: 0.1
+#             #best_k_matches: 30
+# 
+#     fine_match_filter_type: mb_aligner.alignment.filters.fine_matches_local_affine_support_filter.FineMatchesAffineSupportFilter
+#     fine_match_filter_params:
+#         support_radius: 7500
+#         model_index: 3
+#         min_features_num: 3
+#         iterations: 50
+#         max_epsilon: 50
+
+    
+    optimizer_type: mb_aligner.alignment.optimizers.optimize_mesh_elastic.ElasticMeshOptimizer
+    optimizer_params:
+        checkpoints_dir: '/mnt/disks/date_disk/Susan/R1W4/opt_checkpoints'
+        mesh_spacing: 500
+        cross_slice_weight: 2.0
+        cross_slice_winsor: 50
+        intra_slice_weight: 2.0
+        intra_slice_winsor: 10000
+        max_iterations: 5000
+        min_stepsize: 1.0e-30
+
+
+
