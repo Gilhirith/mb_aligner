@@ -1,0 +1,33 @@
+import os
+import sys
+import subprocess
+import numpy
+
+if sys.platform == "darwin":
+    os.environ["CC"] = "gcc-4.9"
+
+
+flags = subprocess.check_output(['pkg-config', '--cflags-only-I', 'opencv']) 
+#include_dirs_list = [flag[2:] for flag in flags.split()]
+include_dirs_list = [str(flag[2:].decode('utf-8')) for flag in flags.split()]
+include_dirs_list.append('.')
+include_dirs_list.append(os.path.dirname(os.path.abspath(__file__)))
+include_dirs_list.append(numpy.get_include())
+flags = subprocess.check_output(['pkg-config', '--libs-only-L', 'opencv']) 
+library_dirs_list = [str(flag) for flag in flags]
+flags = subprocess.check_output(['pkg-config', '--libs', 'opencv']) 
+libraries_list = []
+for flag in flags.split():
+    #libraries_list.append(flag)
+    libraries_list.append(str(flag.decode('utf-8')))
+
+def make_ext(modname, pyxfilename):
+    from distutils.extension import Extension
+    return Extension(name=modname,
+                     sources=[pyxfilename, 'OrientedSimpleBlobDetector.cpp'],
+                     language="c++",
+                     include_dirs=include_dirs_list,
+                     extra_compile_args=['-O3', '--verbose'],
+                     extra_objects=libraries_list
+                    )
+

@@ -1,0 +1,69 @@
+stitching:
+    detector_threads: 20
+    #detector_type: SIFT
+    #detector_params:
+    #    sigma: 1.8
+    detector_type: ORB
+    detector_params:
+        nfeatures: 2000
+    #detector_type: SURF
+    #detector_type: BRISK
+    #detector_type: AKAZE
+
+    #descriptor:
+    #    type: SIFT
+
+    matcher_threads: 20
+    matcher_params:
+        ROD_cutoff: 0.9
+        model_index: 0 # 0 - Translation, 1 - Rigid, 3 - Affine
+        #num_filtered_percent: 0.1
+        #filter_rate_cutoff: 0.1
+        min_features_num: 10
+        iterations: 1000
+        max_epsilon: 5
+        min_inlier_ratio: 0.01
+        min_num_inlier: 0.01
+        max_trust: 3
+        #det_delta: 0.95
+        #max_stretch: 0.95
+        #use_regularizer: True
+        #regularizer_model_index: 1
+        #regularizer_lambda: 0.1
+
+    optimizer_type: TRANSLATION_DAMPING
+    optimizer_params:
+        damping: 0.01
+ 
+
+alignment:
+    #detector_type: SIFT
+    #detector_params:
+    #    sigma: 1.8
+    detector_type: ORB
+    detector_params:
+        nfeatures: 10000
+    #detector_type: SURF
+    #detector_type: BRISK
+    #detector_type: AKAZE
+
+    #descriptor:
+    #    type: SIFT
+
+    matcher_params:
+        ROD_cutoff: 0.9
+        model_index: 3 # 0 - Translation, 1 - Rigid, 3 - Affine
+        #num_filtered_percent: 0.1
+        #filter_rate_cutoff: 0.1
+        min_features_num: 10
+        iterations: 5000
+        max_epsilon: 20
+        min_inlier_ratio: 0.01
+        min_num_inlier: 0.01
+        max_trust: 3
+        det_delta: 0.95
+        max_stretch: 0.95
+        #use_regularizer: True
+        #regularizer_model_index: 1
+        #regularizer_lambda: 0.1
+    

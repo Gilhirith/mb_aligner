@@ -1,0 +1,11 @@
+numpy==1.13.0
+scipy==0.16.0
+rh_renderer==0.0.2
+argparse==1.4.0
+h5py==2.5.0
+Cython==0.23.3
+rh_config==1.0.0
+rh_logger==2.0.0
+ujson==1.35
+scikit-learn==0.19.2
+lru-dict==1.1.6
