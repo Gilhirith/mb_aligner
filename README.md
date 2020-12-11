@@ -68,7 +68,7 @@ make -j4
 make install
 ln -s ~/Tools/opencv_install-3.1.0/lib/python3.5/site-packages/cv2.cpython-35m-x86_64-linux-gnu.so ~/mbeam_aligner_venv/lib/python3.5/site-packages/cv2.so
 
-*add folowwing 3 sentences into environment.sh
+*add the following 3 sentences into environment.sh
 export PKG_CONFIG_PATH=~/Tools/opencv_install-3.1.0/lib/pkgconfig/:$PKG_CONFIG_PATH
 export LD_LIBRARY_PATH=~/Tools/opencv-3.1.0/3rdparty/ippicv/unpack/ippicv_lnx/lib/intel64/:~/Tools/opencv_install-3.1.0/lib/:$LD_LIBRARY_PATH
 export LIBRARY_PATH=~/Tools/opencv-3.1.0/3rdparty/ippicv/unpack/ippicv_lnx/lib/intel64/:~/Tools/opencv_install-3.1.0/lib/:$LIBRARY_PATH
