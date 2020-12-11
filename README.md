@@ -128,9 +128,9 @@ sudo blkid /dev/sdb
 echo UUID=`sudo blkid -s UUID -o value /dev/sdb` /mnt/disks/data_disk ext4 discard,defaults,nofail 0 2 | sudo tee -a /etc/fstab
 
 # Install mb_aligner and rh_renderer (you need to change sources for those on code.harvard.edu)
-git clone git@code.harvard.edu:shw587/rh_img_access_layer.git
+git clone https://github.com/adisuissa/rh_img_access_layer.git
 
-git clone -b google_cloud git@code.harvard.edu:shw587/mb_aligner.git
+git clone https://github.com/Gilhirith/mb_aligner_SH.git
 
 git clone https://github.com/adisuissa/gcsfs.git
 
@@ -169,7 +169,7 @@ cd rh_renderer
 
 pip install -e .
 
-cd mb_aligner
+cd mb_aligner_SH
 
 pip install -e .
 
