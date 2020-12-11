@@ -15,7 +15,7 @@ sudo apt-get install htop
 
 # Setup git
 
-# IF USE VIRTUALENV
+# If use virtualenv
 wget https://bootstrap.pypa.io/get-pip.py
 
 sudo python3 get-pip.py
