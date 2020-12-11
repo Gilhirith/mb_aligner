@@ -3,7 +3,7 @@ A Multi-beam affine stitching and 3d elastic registration library for running on
 
 Uses python 3.4+.
 
-The Installation Note (Start from a newly created Google Virtual Machines):
+# The Installation Note (Start from a newly created Google Virtual Machines):
 
 sudo apt-get update
 
