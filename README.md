@@ -127,7 +127,7 @@ sudo blkid /dev/sdb
 
 echo UUID=`sudo blkid -s UUID -o value /dev/sdb` /mnt/disks/data_disk ext4 discard,defaults,nofail 0 2 | sudo tee -a /etc/fstab
 
-# Install mb_aligner and rh_renderer (you need to change sources for those on code.harvard.edu)
+# Install mb_aligner and rh_renderer
 git clone https://github.com/adisuissa/rh_img_access_layer.git
 
 git clone https://github.com/Gilhirith/mb_aligner_SH.git
