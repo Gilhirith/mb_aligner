@@ -130,7 +130,7 @@ echo UUID=`sudo blkid -s UUID -o value /dev/sdb` /mnt/disks/data_disk ext4 disca
 # Install mb_aligner and rh_renderer
 git clone https://github.com/adisuissa/rh_img_access_layer.git
 
-git clone https://github.com/Gilhirith/mb_aligner_SH.git
+git clone https://github.com/Gilhirith/mb_aligner.git
 
 git clone https://github.com/adisuissa/gcsfs.git
 
@@ -169,7 +169,7 @@ cd rh_renderer
 
 pip install -e .
 
-cd mb_aligner_SH
+cd mb_aligner
 
 pip install -e .
 
