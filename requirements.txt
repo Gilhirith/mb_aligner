@@ -6,6 +6,6 @@ h5py==2.5.0
 Cython==0.23.3
 rh_config==1.0.0
 rh_logger==2.0.0
-ujson==1.35
+ujson==5.2.0
 scikit-learn==0.19.2
 lru-dict==1.1.6
