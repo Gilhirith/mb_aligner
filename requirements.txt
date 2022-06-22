@@ -1,4 +1,4 @@
-numpy==1.13.0
+numpy==1.22.0
 scipy==0.16.0
 rh_renderer==0.0.2
 argparse==1.4.0
